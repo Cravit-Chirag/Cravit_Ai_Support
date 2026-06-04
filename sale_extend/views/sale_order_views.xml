@@ -17,7 +17,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
-                <page string="Extra Values" name="extra_values">
+                <page string="Extra Data" name="extra_values">
                     <group>
                         <field name="abc"/>
                     </group>
