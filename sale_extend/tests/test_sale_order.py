@@ -51,8 +51,11 @@ class TestSaleOrderShippingAddress(TransactionCase):
             order.shipping_address_display,
             delivery_without_address.contact_address,
         )
-class TestSaleOrderXyz(TransactionCase):
-    """Test the xyz field on sale orders."""
+
+
+@tagged("post_install", "-at_install")
+class TestSaleOrderAbc(TransactionCase):
+    """Test the abc field on sale orders."""
 
     @classmethod
     def setUpClass(cls):
@@ -61,18 +64,18 @@ class TestSaleOrderXyz(TransactionCase):
         cls.SaleOrder = cls.env["sale.order"]
         cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
 
-    def test_xyz_field_on_create(self):
-        """xyz is stored when set on sale order creation."""
+    def test_abc_field_on_create(self):
+        """abc is stored when set on sale order creation."""
         order = self.SaleOrder.create(
             {
                 "partner_id": self.partner.id,
-                "xyz": "sample-xyz",
+                "abc": "sample-abc",
             }
         )
-        self.assertEqual(order.xyz, "sample-xyz")
+        self.assertEqual(order.abc, "sample-abc")
 
-    def test_xyz_field_on_write(self):
-        """xyz can be updated after sale order creation."""
+    def test_abc_field_on_write(self):
+        """abc can be updated after sale order creation."""
         order = self.SaleOrder.create({"partner_id": self.partner.id})
-        order.write({"xyz": "updated-xyz"})
-        self.assertEqual(order.xyz, "updated-xyz")
+        order.write({"abc": "updated-abc"})
+        self.assertEqual(order.abc, "updated-abc")
