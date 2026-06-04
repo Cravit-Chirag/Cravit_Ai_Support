@@ -4,7 +4,6 @@ from odoo.tests import TransactionCase, tagged
 @tagged("post_install", "-at_install")
 class TestSaleOrderShippingAddress(TransactionCase):
     """Test shipping address display on sale orders."""
-
     @classmethod
     def setUpClass(cls):
         """Prepare sale order model and partners for tests."""
