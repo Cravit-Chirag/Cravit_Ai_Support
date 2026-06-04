@@ -11,4 +11,6 @@ class SaleOrder(models.Model):
         related="partner_shipping_id.contact_address",
         readonly=True,
         help="Formatted delivery address of the customer for this order.",
+    xyz = fields.Char(
+        help="Custom XYZ value for this sale order.",
     )
