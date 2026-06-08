@@ -92,13 +92,13 @@ class TestSaleOrderXyz(TransactionCase):
         self.assertIn('name="xyz"', arch)
 
     def test_xyz_in_form_view(self):
-        """xyz is shown on the sale order form view after partner_id."""
+        """xyz is shown on the sale order form view after Order Date."""
         form_view = self.env.ref("sale.view_order_form")
         arch = form_view.get_combined_arch()
         self.assertIn('name="xyz"', arch)
-        partner_pos = arch.find('name="partner_id"')
+        date_order_pos = arch.find('name="date_order"')
         xyz_pos = arch.find('name="xyz"')
-        self.assertGreater(xyz_pos, partner_pos)
+        self.assertGreater(xyz_pos, date_order_pos)
 
 
 @tagged("post_install", "-at_install")
