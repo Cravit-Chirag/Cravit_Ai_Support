@@ -53,7 +53,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <field name="partner_id" position="after">
+            <field name="date_order" position="after">
                 <field name="xyz"/>
             </field>
         </field>
