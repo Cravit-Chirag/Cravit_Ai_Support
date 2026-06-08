@@ -91,11 +91,14 @@ class TestSaleOrderXyz(TransactionCase):
         arch = tree_view.get_combined_arch()
         self.assertIn('name="xyz"', arch)
 
-    def test_xyz_not_in_form_view(self):
-        """xyz is not shown on the sale order form view."""
+    def test_xyz_in_form_view(self):
+        """xyz is shown on the sale order form view after partner_id."""
         form_view = self.env.ref("sale.view_order_form")
         arch = form_view.get_combined_arch()
-        self.assertNotIn('name="xyz"', arch)
+        self.assertIn('name="xyz"', arch)
+        partner_pos = arch.find('name="partner_id"')
+        xyz_pos = arch.find('name="xyz"')
+        self.assertGreater(xyz_pos, partner_pos)
 
 
 @tagged("post_install", "-at_install")
