@@ -47,4 +47,26 @@
             </field>
         </field>
     </record>
+
+    <record id="view_quotation_tree_inherit_xyz" model="ir.ui.view">
+        <field name="name">sale.order.tree.quotation.inherit.xyz</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="xyz" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree_inherit_xyz" model="ir.ui.view">
+        <field name="name">sale.order.tree.order.inherit.xyz</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="xyz" optional="show"/>
+            </field>
+        </field>
+    </record>
 </odoo>

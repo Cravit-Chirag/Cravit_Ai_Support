@@ -79,6 +79,24 @@ class TestSaleOrderXyz(TransactionCase):
         order.write({"xyz": "updated-xyz"})
         self.assertEqual(order.xyz, "updated-xyz")
 
+    def test_xyz_in_quotation_tree_view(self):
+        """xyz is shown on the quotation list view."""
+        tree_view = self.env.ref("sale.view_quotation_tree")
+        arch = tree_view.get_combined_arch()
+        self.assertIn('name="xyz"', arch)
+
+    def test_xyz_in_order_tree_view(self):
+        """xyz is shown on the sale order list view."""
+        tree_view = self.env.ref("sale.view_order_tree")
+        arch = tree_view.get_combined_arch()
+        self.assertIn('name="xyz"', arch)
+
+    def test_xyz_not_in_form_view(self):
+        """xyz is not shown on the sale order form view."""
+        form_view = self.env.ref("sale.view_order_form")
+        arch = form_view.get_combined_arch()
+        self.assertNotIn('name="xyz"', arch)
+
 
 @tagged("post_install", "-at_install")
 class TestSaleOrderAbc(TransactionCase):
