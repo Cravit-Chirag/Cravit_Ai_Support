@@ -7,7 +7,8 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     xyz = fields.Char(
-        help="Custom XYZ value for this sale order.",
+        string="Salesxyz",
+        help="Custom Salesxyz value for this sale order.",
     )
     shipping_address_display = fields.Char(
         string="Shipping Address",
