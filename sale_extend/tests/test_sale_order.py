@@ -54,7 +54,7 @@ class TestSaleOrderShippingAddress(TransactionCase):
 
 @tagged("post_install", "-at_install")
 class TestSaleOrderXyz(TransactionCase):
-    """Test the xyz field on sale orders."""
+    """Test the Salesxyz field on sale orders."""
 
     @classmethod
     def setUpClass(cls):
@@ -63,8 +63,13 @@ class TestSaleOrderXyz(TransactionCase):
         cls.SaleOrder = cls.env["sale.order"]
         cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
 
+    def test_xyz_field_label(self):
+        """Salesxyz is the field label shown in the UI."""
+        field = self.SaleOrder._fields["xyz"]
+        self.assertEqual(field.string, "Salesxyz")
+
     def test_xyz_field_on_create(self):
-        """xyz is stored when set on sale order creation."""
+        """Salesxyz is stored when set on sale order creation."""
         order = self.SaleOrder.create(
             {
                 "partner_id": self.partner.id,
@@ -74,25 +79,25 @@ class TestSaleOrderXyz(TransactionCase):
         self.assertEqual(order.xyz, "sample-xyz")
 
     def test_xyz_field_on_write(self):
-        """xyz can be updated after sale order creation."""
+        """Salesxyz can be updated after sale order creation."""
         order = self.SaleOrder.create({"partner_id": self.partner.id})
         order.write({"xyz": "updated-xyz"})
         self.assertEqual(order.xyz, "updated-xyz")
 
     def test_xyz_in_quotation_tree_view(self):
-        """xyz is shown on the quotation list view."""
+        """Salesxyz is shown on the quotation list view."""
         tree_view = self.env.ref("sale.view_quotation_tree")
         arch = tree_view.get_combined_arch()
         self.assertIn('name="xyz"', arch)
 
     def test_xyz_in_order_tree_view(self):
-        """xyz is shown on the sale order list view."""
+        """Salesxyz is shown on the sale order list view."""
         tree_view = self.env.ref("sale.view_order_tree")
         arch = tree_view.get_combined_arch()
         self.assertIn('name="xyz"', arch)
 
     def test_xyz_in_form_view(self):
-        """xyz is shown on the sale order form view after Order Date."""
+        """Salesxyz is shown on the sale order form view after Order Date."""
         form_view = self.env.ref("sale.view_order_form")
         arch = form_view.get_combined_arch()
         self.assertIn('name="xyz"', arch)
